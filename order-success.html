@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Success</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        max-width: 600px;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .header {
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        margin-top: 0;
+        font-size: 32px;
+        color: #19ad7b;
+      }
+
+      .icon {
+        font-size: 60px;
+        color: #19ad7b;
+        margin-bottom: 20px;
+      }
+
+      .order-summary {
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .order-summary h2 {
+        font-size: 24px;
+        color: #003d29;
+      }
+
+      .order-details {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      .order-details p {
+        margin: 5px 0;
+        color: #555;
+      }
+
+      .buttons {
+        margin-top: 20px;
+      }
+
+      .buttons a {
+        display: inline-block;
+        padding: 12px 20px;
+        color: #fff;
+        background-color: #19ad7b;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .buttons a:hover {
+        background-color: #003d29;
+      }
+
+      .buttons a i {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <i class="fas fa-check-circle icon"></i>
+        <h1>Thank You for Your Order!</h1>
+      </div>
+      <div class="buttons">
+        <a href="./index.html"
+          ><i class="fas fa-shopping-bag"></i> Continue Shopping</a
+        >
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        max-width: 400px;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header h1 {
+        margin-top: 0;
+        font-size: 24px;
+        color: #19ad7b;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #003d29;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      button {
+        background-color: #19ad7b;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #003d29;
+      }
+
+      button i {
+        margin-right: 5px;
+      }
+      .error-message {
+        color: red;
+        margin-top: 10px;
+      }
+      .hide {
+        display: none;
+      }
+      .show {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Checkout</h1>
+      </div>
+      <form id="checkoutCartForm">
+        <div class="hide" id="name-email">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+        </div>
+
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="4" required></textarea>
+
+        <p class="error-message" id="order-error"></p>
+
+        <button type="submit">
+          <i class="fas fa-shopping-cart"></i> Place Order
+        </button>
+      </form>
+    </div>
+    <script src="./script.js"></script>
+    <script>
+      if (!localStorage.getItem("token")) {
+        document.getElementById("name-email").classList.add("show");
+      }
+      // Attach order event listener
+      document
+        .getElementById("checkoutCartForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+          if (localStorage.getItem("token")) {
+            const address = document.getElementById("address").value;
+            const data = {
+              address: address,
+            };
+            const result = await postOrderItems(data);
+          } else {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const address = document.getElementById("address").value;
+            const data = {
+              name: name,
+              email: email,
+              address: address,
+            };
+            const productInfo = [
+              JSON.parse(sessionStorage.getItem("productInfo")),
+            ];
+            const result = await makeOrder(productInfo, data);
+          }
+
+          if (result && result.message) {
+            document.getElementById("order-error").textContent = result.message;
+          } else {
+            document.getElementById("order-error").textContent = "";
+          }
+        });
+    </script>
+  </body>
+</html>
