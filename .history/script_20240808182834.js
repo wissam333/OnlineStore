@@ -118,42 +118,6 @@ async function fetchAndDisplayProducts() {
   }
 }
 
-// Function to fetch and display products (for products page)
-async function fetchAndDisplayAllProducts() {
-  try {
-    const response = await fetch(
-      `http://${HOST}:5000/api/products?pageSize=10000`
-    );
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-
-    const data = await response.json();
-    const container = document.getElementById("all-products-container");
-
-    data.products.forEach((product) => {
-      const productDiv = document.createElement("div");
-      productDiv.classList.add("product");
-
-      productDiv.innerHTML = `
-        <img src="${product.img || "https://via.placeholder.com/250"}" alt="${
-        product.title
-      }">
-        <h2 class="title">${product.title}</h2>
-        <p class="desc">${product.desc}</p>
-        <button onclick="viewProductDetails('${
-          product._id
-        }')">View Details</button>
-        <button onclick="addToCart('${product.title}', ${product.price}, '${
-        product._id
-      }')">Add to Cart</button>
-      `;
-
-      container.appendChild(productDiv);
-    });
-  } catch (error) {
-    console.error("Error fetching products:", error);
-  }
-}
-
 function viewProductDetails(productId) {
   window.location.href = `product.html?id=${productId}`;
 }

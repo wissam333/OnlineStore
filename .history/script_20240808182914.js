@@ -119,10 +119,10 @@ async function fetchAndDisplayProducts() {
 }
 
 // Function to fetch and display products (for products page)
-async function fetchAndDisplayAllProducts() {
+async function fetchAndDisplayProducts() {
   try {
     const response = await fetch(
-      `http://${HOST}:5000/api/products?pageSize=10000`
+      `http://${HOST}:5000/api/products`
     );
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
