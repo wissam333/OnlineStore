@@ -338,26 +338,26 @@
         });
 
       // Function to filter products based on search query
-      // function filterProducts(query) {
-      //   const products = document.querySelectorAll(
-      //     "#products-container .product"
-      //   );
+      function filterProducts(query) {
+        const products = document.querySelectorAll(
+          "#products-container .product"
+        );
 
-      //   products.forEach((product) => {
-      //     const title = product
-      //       .querySelector(".title")
-      //       .textContent.toLowerCase();
-      //     const description = product
-      //       .querySelector(".desc")
-      //       .textContent.toLowerCase();
+        products.forEach((product) => {
+          const title = product
+            .querySelector(".title")
+            .textContent.toLowerCase();
+          const description = product
+            .querySelector(".desc")
+            .textContent.toLowerCase();
 
-      //     if (title.includes(query) || description.includes(query)) {
-      //       product.style.display = "";
-      //     } else {
-      //       product.style.display = "none";
-      //     }
-      //   });
-      // }
+          if (title.includes(query) || description.includes(query)) {
+            product.style.display = "";
+          } else {
+            product.style.display = "none";
+          }
+        });
+      }
     </script>
   </body>
 </html>
