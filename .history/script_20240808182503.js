@@ -86,7 +86,7 @@ function updateTotal() {
 async function fetchAndDisplayProducts() {
   try {
     const response = await fetch(
-      `http://${HOST}:5000/api/products?latest=true`
+      `http://${HOST}:5000/api/products?latest`
     );
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
